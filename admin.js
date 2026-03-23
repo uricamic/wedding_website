@@ -31,6 +31,32 @@ let allRows = [];
 let visibleRows = [];
 let seatingRows = [];
 
+function getAuthRedirectUrl() {
+  if (config.adminRedirectUrl) {
+    return String(config.adminRedirectUrl).trim();
+  }
+
+  if (config.publicSiteUrl) {
+    const base = String(config.publicSiteUrl).trim().replace(/\/$/, "");
+    if (base) {
+      return `${base}/admin.html`;
+    }
+  }
+
+  const { protocol, hostname } = window.location;
+  const isLocal =
+    protocol === "file:" ||
+    hostname === "localhost" ||
+    hostname === "127.0.0.1";
+
+  if (isLocal) {
+    // Let Supabase use configured SITE_URL when running locally.
+    return "";
+  }
+
+  return `${window.location.origin}${window.location.pathname}`;
+}
+
 if (!canUseSupabase) {
   adminFeedback.textContent =
     "Doplňte Supabase údaje do config.js, pak se admin dashboard automaticky aktivuje.";
@@ -44,11 +70,12 @@ if (!canUseSupabase) {
     event.preventDefault();
     adminFeedback.textContent = "Posílám magic link...";
 
+    const redirectUrl = getAuthRedirectUrl();
+    const options = redirectUrl ? { emailRedirectTo: redirectUrl } : undefined;
+
     const { error } = await supabase.auth.signInWithOtp({
       email: adminEmail.value,
-      options: {
-        emailRedirectTo: `${window.location.origin}${window.location.pathname}`
-      }
+      options
     });
 
     if (error) {
