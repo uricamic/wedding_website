@@ -20,14 +20,18 @@
         <p class="kicker">RSVP Dashboard</p>
         <h1 class="admin-title">Správa hostů</h1>
       </div>
-      <p class="admin-note">Přihlášení funguje přes Supabase magic link. Tento panel je připraven pro GitHub Pages.</p>
+      <p class="admin-note">Přihlášení funguje přes Supabase Auth (e-mail + heslo). Tento panel je připraven pro GitHub Pages.</p>
 
       <form id="adminLoginForm" class="admin-login-form">
         <label>
           <span>Admin e-mail</span>
           <input type="email" id="adminEmail" required />
         </label>
-        <button type="submit" class="cta">Poslat přihlašovací odkaz</button>
+        <label>
+          <span>Heslo</span>
+          <input type="password" id="adminPassword" required />
+        </label>
+        <button type="submit" class="cta">Přihlásit</button>
       </form>
       <p id="adminFeedback" class="form-feedback" role="status" aria-live="polite"></p>
 

@@ -50,13 +50,15 @@ If Supabase is not configured, RSVP will still work in preview mode by saving re
 3. Copy `config.example.js` to `config.js` and fill:
 	- `supabaseUrl`
 	- `supabaseAnonKey`
-	- `adminRedirectUrl` (recommended on GitHub Pages, e.g. `https://uricamic.github.io/wedding_website/admin.html`)
 4. Commit `config.js` with your public keys (anon key is safe for frontend use).
-5. Add at least one admin e-mail to allowlist table, for example:
+5. In Supabase Auth, create admin user(s) with e-mail + password.
+6. Add at least one admin e-mail to allowlist table, for example:
 	- `insert into public.admin_allowlist(email) values ('you@example.com');`
-6. Open `admin.html` and log in with magic link to see RSVP dashboard.
+7. Open `admin.html` and log in with e-mail + password to see RSVP dashboard.
 
 Note: `admin.html` is intentionally not linked from the public homepage, so you can access it privately by direct URL.
+
+Important: Do not store plaintext passwords in `admin_allowlist` or any custom table. Passwords are handled securely by Supabase Auth.
 
 ## Important Security Note
 
