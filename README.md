@@ -36,6 +36,13 @@ If Supabase is not configured, RSVP will still work in preview mode by saving re
 3. Ensure default branch is `main`.
 4. Push to `main`; workflow `.github/workflows/deploy-pages.yml` deploys automatically.
 
+### Troubleshooting: `Get Pages site failed` / `Not Found`
+
+- The workflow already includes `enablement: true` for `actions/configure-pages`, so it can initialize Pages automatically.
+- If deployment still fails, verify you have admin rights on the repository.
+- In organization repositories, ensure GitHub Pages is allowed by org policy.
+- Confirm you are pushing to `main` (the workflow trigger branch).
+
 ## Real Backend With Supabase
 
 1. Create a free Supabase project.
