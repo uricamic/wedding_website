@@ -46,22 +46,79 @@
         </article>
       </div>
 
+      <div id="adminFilters" class="admin-filters" hidden>
+        <label>
+          <span>Hledat hosta</span>
+          <input type="search" id="filterSearch" placeholder="Jméno nebo e-mail" />
+        </label>
+        <label>
+          <span>Účast</span>
+          <select id="filterAttendance">
+            <option value="all">Všichni</option>
+            <option value="yes">Pouze potvrzení</option>
+            <option value="no">Pouze omluvení</option>
+          </select>
+        </label>
+        <label>
+          <span>Ubytování</span>
+          <select id="filterAccommodation">
+            <option value="all">Všichni</option>
+            <option value="yes">Potřebují ubytování</option>
+            <option value="no">Bez ubytování</option>
+          </select>
+        </label>
+        <button id="exportCsvBtn" class="cta" type="button">Export CSV</button>
+      </div>
+
       <div class="table-wrap" id="tableWrap" hidden>
         <table class="admin-table">
           <thead>
             <tr>
+              <th>ID</th>
               <th>Jméno</th>
               <th>E-mail</th>
               <th>Účast</th>
               <th>Hostů</th>
               <th>Ubytování</th>
-              <th>Nocí</th>
-              <th>Sezení</th>
+              <th>Telefon</th>
+              <th>Strava</th>
+              <th>Vzkaz</th>
             </tr>
           </thead>
           <tbody id="rsvpRows"></tbody>
         </table>
       </div>
+
+      <section class="seating-editor" id="seatingEditor" hidden>
+        <div class="section-heading">
+          <p class="kicker">Plán stolů</p>
+          <h2>Interaktivní editor zasedacího pořádku</h2>
+        </div>
+        <p class="admin-note">Vyberte hosta, přiřaďte stůl a místo. Každý host má právě jedno aktivní přiřazení.</p>
+
+        <form id="seatingForm" class="seating-form">
+          <label>
+            <span>Host</span>
+            <select id="seatGuest" required></select>
+          </label>
+          <label>
+            <span>Stůl</span>
+            <input type="text" id="seatTable" placeholder="Např. Stůl A" required />
+          </label>
+          <label>
+            <span>Místo</span>
+            <input type="text" id="seatLabel" placeholder="Např. A3" />
+          </label>
+          <label>
+            <span>Poznámka</span>
+            <input type="text" id="seatNotes" placeholder="Např. bezlepkové menu" />
+          </label>
+          <button type="submit" class="cta">Uložit přiřazení</button>
+        </form>
+
+        <p id="seatingFeedback" class="form-feedback" role="status" aria-live="polite"></p>
+        <div id="seatingBoard" class="seating-board"></div>
+      </section>
 
       <p><a href="index.html" class="admin-link">Zpět na web</a></p>
     </section>

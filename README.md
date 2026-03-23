@@ -7,8 +7,8 @@ Static, mobile-first wedding website in Czech, English, and Ukrainian, designed 
 - Elegant pink-lila design with explicit Moravian Vnorovsky and Ukrainian vyshyvanka-inspired ornaments.
 - Language switcher (`CZ`, `EN`, `UA`) with persisted selection.
 - Story, timeline, gallery, RSVP form, contacts, and future seating-plan section.
-- RSVP fields now include accommodation needs and seating preference.
-- Optional admin dashboard (`admin.html`) for RSVP overview.
+- RSVP fields now include accommodation needs.
+- Admin dashboard (`admin.html`) now supports filtering, CSV export, and interactive seating assignment editor.
 - No build step required.
 
 ## Project Structure
@@ -17,7 +17,7 @@ Static, mobile-first wedding website in Czech, English, and Ukrainian, designed 
 - `styles.css` - Styling and responsive behavior.
 - `script.js` - Translations, gallery, RSVP submission logic.
 - `admin.html` - RSVP admin dashboard UI.
-- `admin.js` - Admin login and RSVP data loading.
+- `admin.js` - Admin login, allowlist check, filtering/export, and seating assignment management.
 - `config.js` - Local runtime configuration (Supabase keys).
 - `config.example.js` - Configuration template.
 - `supabase-schema.sql` - Database schema and RLS policies.
@@ -51,14 +51,16 @@ If Supabase is not configured, RSVP will still work in preview mode by saving re
 	- `supabaseUrl`
 	- `supabaseAnonKey`
 4. Commit `config.js` with your public keys (anon key is safe for frontend use).
-5. Open `admin.html` and log in with magic link to see RSVP dashboard.
+5. Add at least one admin e-mail to allowlist table, for example:
+	- `insert into public.admin_allowlist(email) values ('you@example.com');`
+6. Open `admin.html` and log in with magic link to see RSVP dashboard.
 
 ## Important Security Note
 
-- Reading RSVP rows is restricted to authenticated users by RLS policy.
+- Reading RSVP rows and editing seating assignments is restricted to allowlisted authenticated users.
 - Public website visitors can insert RSVP rows only.
 
 ## Future Seating Plan
 
-- A dedicated section is already prepared in the UI (`#seating`).
-- Existing RSVP schema includes `seating_preference` so migration to full table-seat assignment is straightforward.
+- Public site has a dedicated section in UI (`#seating`).
+- Admin panel now includes an interactive seating assignment editor with one active seat assignment per RSVP.
