@@ -1,6 +1,7 @@
 const adminFeedback = document.getElementById("adminFeedback");
 const adminLoginForm = document.getElementById("adminLoginForm");
 const adminEmail = document.getElementById("adminEmail");
+const adminPassword = document.getElementById("adminPassword");
 const statTotal = document.getElementById("statTotal");
 const statComing = document.getElementById("statComing");
 const statAccommodation = document.getElementById("statAccommodation");
@@ -31,32 +32,6 @@ let allRows = [];
 let visibleRows = [];
 let seatingRows = [];
 
-function getAuthRedirectUrl() {
-  if (config.adminRedirectUrl) {
-    return String(config.adminRedirectUrl).trim();
-  }
-
-  if (config.publicSiteUrl) {
-    const base = String(config.publicSiteUrl).trim().replace(/\/$/, "");
-    if (base) {
-      return `${base}/admin.html`;
-    }
-  }
-
-  const { protocol, hostname } = window.location;
-  const isLocal =
-    protocol === "file:" ||
-    hostname === "localhost" ||
-    hostname === "127.0.0.1";
-
-  if (isLocal) {
-    // Let Supabase use configured SITE_URL when running locally.
-    return "";
-  }
-
-  return `${window.location.origin}${window.location.pathname}`;
-}
-
 if (!canUseSupabase) {
   adminFeedback.textContent =
     "Doplňte Supabase údaje do config.js, pak se admin dashboard automaticky aktivuje.";
@@ -68,23 +43,20 @@ if (!canUseSupabase) {
 
   adminLoginForm.addEventListener("submit", async (event) => {
     event.preventDefault();
-    adminFeedback.textContent = "Posílám magic link...";
+    adminFeedback.textContent = "Přihlašuji...";
 
-    const redirectUrl = getAuthRedirectUrl();
-    const options = redirectUrl ? { emailRedirectTo: redirectUrl } : undefined;
-
-    const { error } = await supabase.auth.signInWithOtp({
+    const { error } = await supabase.auth.signInWithPassword({
       email: adminEmail.value,
-      options
+      password: adminPassword.value
     });
 
     if (error) {
-      adminFeedback.textContent = "Nepodařilo se odeslat přihlašovací odkaz.";
+      adminFeedback.textContent = "Přihlášení se nezdařilo. Zkontrolujte e-mail, heslo a admin allowlist.";
       return;
     }
 
-    adminFeedback.textContent =
-      "Odkaz byl odeslán. Po otevření e-mailu se stránka přihlásí automaticky.";
+    adminFeedback.textContent = "Přihlášení proběhlo úspěšně. Načítám data...";
+    await initAdmin();
   });
 
   [filterSearch, filterAttendance, filterAccommodation].forEach((control) => {
@@ -356,7 +328,7 @@ if (!canUseSupabase) {
   async function initAdmin() {
     const { data } = await supabase.auth.getSession();
     if (!data.session) {
-      adminFeedback.textContent = "Přihlaste se e-mailem, poté se data načtou.";
+      adminFeedback.textContent = "Přihlaste se e-mailem a heslem, poté se data načtou.";
       return;
     }
 
