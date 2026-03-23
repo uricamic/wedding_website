@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alina & Michal | 30.5.2026</title>
+  <meta name="description" content="Svatebni web Aliny a Michala: harmonogram, galerie, RSVP, pribeh a kontakty." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="motif-layer" aria-hidden="true"></div>
+  <div class="ornament-band ornament-band-vnorovsky" aria-hidden="true"></div>
+
+  <header class="site-header" id="top">
+    <div class="language-switch" aria-label="Language switcher">
+      <button class="lang-btn active" data-lang-switch="cs">CZ</button>
+      <button class="lang-btn" data-lang-switch="en">EN</button>
+      <button class="lang-btn" data-lang-switch="uk">UA</button>
+    </div>
+
+    <nav class="nav">
+      <a href="#story" data-i18n="navStory">Náš příběh</a>
+      <a href="#timeline" data-i18n="navTimeline">Harmonogram</a>
+      <a href="#gallery" data-i18n="navGallery">Galerie</a>
+      <a href="#rsvp" data-i18n="navRsvp">RSVP</a>
+      <a href="#seating" data-i18n="navSeating">Zasedací plán</a>
+      <a href="#contact" data-i18n="navContact">Kontakty</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="eyebrow" data-i18n="heroEyebrow">Svatba roku 2026</p>
+      <h1>Alina <span>&</span> Michal</h1>
+      <p class="hero-date" data-i18n="heroDate">30. 5. 2026 | Resort Rybníček</p>
+      <p class="hero-location" data-i18n="heroLocation">Na Rybníčku 856, 696 71 Blatnice pod Sv. Antonínkem</p>
+      <a href="#rsvp" class="cta" data-i18n="heroCta">Potvrdit účast</a>
+      <div class="quote-wrap">
+        <blockquote data-i18n="quoteOne">"Láska je jako dobré víno..."</blockquote>
+        <blockquote data-i18n="quoteTwo">"A je to prosté: ruku v ruce jít a nic víc nemít, a nic víc nechtít"</blockquote>
+        <p class="quote-author">Jan Skácel</p>
+      </div>
+    </section>
+
+    <div class="ornament-band ornament-band-vyshyvanka" aria-hidden="true"></div>
+
+    <section class="story section" id="story">
+      <div class="section-heading">
+        <p class="kicker" data-i18n="storyKicker">Jak to začalo</p>
+        <h2 data-i18n="storyTitle">Náš příběh</h2>
+      </div>
+      <div class="story-grid">
+        <article>
+          <h3 data-i18n="storyCardOneTitle">První setkání</h3>
+          <p data-i18n="storyCardOneText">Byl pozdní letní večer, kdy se naše cesty nečekaně protnuly. Z původně krátkého rozhovoru vznikl příběh, který nás dovedl až sem.</p>
+        </article>
+        <article>
+          <h3 data-i18n="storyCardTwoTitle">Morava × Ukrajina</h3>
+          <p data-i18n="storyCardTwoText">Do naší svatby jsme otiskli jemné prvky moravského vnorovského motivu i ukrajinské vyshyvanky, protože oba domovy patří k našemu společnému "ano".</p>
+        </article>
+        <article>
+          <h3 data-i18n="storyCardThreeTitle">Cesta k 30. 5. 2026</h3>
+          <p data-i18n="storyCardThreeText">Po společných cestách, radostech i výzvách jsme si vybrali datum, které bude navždy symbolem našeho nového začátku.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="timeline section" id="timeline">
+      <div class="section-heading">
+        <p class="kicker" data-i18n="timelineKicker">Svatební den</p>
+        <h2 data-i18n="timelineTitle">Harmonogram</h2>
+      </div>
+      <ol class="timeline-list">
+        <li>
+          <span>12:00</span>
+          <p data-i18n="eventCeremony">Svatební obřad</p>
+        </li>
+        <li>
+          <span>13:00</span>
+          <p data-i18n="eventLunch">Slavnostní oběd</p>
+        </li>
+        <li>
+          <span>15:00</span>
+          <p data-i18n="eventCakeCoffee">Krájení dortu a káva</p>
+        </li>
+        <li>
+          <span>16:00</span>
+          <p data-i18n="eventPhotos">Novomanželské focení</p>
+        </li>
+        <li>
+          <span>18:00</span>
+          <p data-i18n="eventFirstDance">První tanec a zahájení oslavy</p>
+        </li>
+        <li>
+          <span>18:30 - 24:00</span>
+          <p data-i18n="eventBand">Živá hudba: kapela Georgo</p>
+        </li>
+      </ol>
+    </section>
+
+    <section class="gallery section" id="gallery">
+      <div class="section-heading">
+        <p class="kicker" data-i18n="galleryKicker">Vzpomínky</p>
+        <h2 data-i18n="galleryTitle">Fotogalerie</h2>
+      </div>
+      <p class="gallery-note" data-i18n="galleryNote">Kliknutím na fotografii ji otevřete ve větším formátu.</p>
+      <div class="gallery-grid" id="galleryGrid">
+        <button class="gallery-item" type="button"><img src="https://picsum.photos/id/1035/1000/1300" alt="Romantic photo 1" loading="lazy" /></button>
+        <button class="gallery-item" type="button"><img src="https://picsum.photos/id/1027/1000/1300" alt="Romantic photo 2" loading="lazy" /></button>
+        <button class="gallery-item" type="button"><img src="https://picsum.photos/id/1062/1000/1300" alt="Romantic photo 3" loading="lazy" /></button>
+        <button class="gallery-item" type="button"><img src="https://picsum.photos/id/1069/1000/1300" alt="Romantic photo 4" loading="lazy" /></button>
+        <button class="gallery-item" type="button"><img src="https://picsum.photos/id/1074/1000/1300" alt="Romantic photo 5" loading="lazy" /></button>
+        <button class="gallery-item" type="button"><img src="https://picsum.photos/id/1081/1000/1300" alt="Romantic photo 6" loading="lazy" /></button>
+      </div>
+    </section>
+
+    <section class="rsvp section" id="rsvp">
+      <div class="section-heading">
+        <p class="kicker" data-i18n="rsvpKicker">Budeme rádi, když dorazíte</p>
+        <h2 data-i18n="rsvpTitle">RSVP formulář</h2>
+      </div>
+      <form id="rsvpForm" name="rsvp" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="rsvp" />
+        <input type="hidden" name="bot-field" />
+
+        <label>
+          <span data-i18n="fieldName">Jméno a příjmení</span>
+          <input type="text" name="name" required />
+        </label>
+
+        <label>
+          <span data-i18n="fieldEmail">E-mail</span>
+          <input type="email" name="email" required />
+        </label>
+
+        <label>
+          <span data-i18n="fieldPhone">Telefon</span>
+          <input type="tel" name="phone" />
+        </label>
+
+        <label>
+          <span data-i18n="fieldAttendance">Potvrdíte účast?</span>
+          <select name="attendance" required>
+            <option value="" data-i18n="attendancePlaceholder">Vyberte možnost</option>
+            <option value="yes" data-i18n="attendanceYes">Ano, těšíme se</option>
+            <option value="no" data-i18n="attendanceNo">Bohužel se nezúčastníme</option>
+          </select>
+        </label>
+
+        <label>
+          <span data-i18n="fieldGuests">Počet hostů</span>
+          <input type="number" name="guests" min="1" max="6" value="1" />
+        </label>
+
+        <label>
+          <span data-i18n="fieldAccommodation">Potřebujete ubytování?</span>
+          <select name="accommodation" required>
+            <option value="" data-i18n="accommodationPlaceholder">Vyberte možnost</option>
+            <option value="no" data-i18n="accommodationNo">Ne, zařídíme si sami</option>
+            <option value="yes" data-i18n="accommodationYes">Ano, prosíme o pomoc s ubytováním</option>
+          </select>
+        </label>
+
+        <label>
+          <span data-i18n="fieldAccommodationNights">Počet nocí ubytování</span>
+          <input type="number" name="accommodation_nights" min="0" max="7" value="0" />
+        </label>
+
+        <label>
+          <span data-i18n="fieldFood">Alergie nebo stravovací preference</span>
+          <input type="text" name="food" />
+        </label>
+
+        <label>
+          <span data-i18n="fieldSeating">Preferované sezení (volitelné)</span>
+          <input type="text" name="seating_preference" />
+        </label>
+
+        <label>
+          <span data-i18n="fieldMessage">Vzkaz pro novomanžele</span>
+          <textarea name="message" rows="4"></textarea>
+        </label>
+
+        <button type="submit" class="cta" data-i18n="rsvpSubmit">Odeslat RSVP</button>
+        <p class="form-feedback" id="formFeedback" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section class="seating section" id="seating">
+      <div class="section-heading">
+        <p class="kicker" data-i18n="seatingKicker">Připravujeme</p>
+        <h2 data-i18n="seatingTitle">Budoucí zasedací plán</h2>
+      </div>
+      <p data-i18n="seatingText">Po uzávěrce RSVP sem přidáme interaktivní zasedací plán stolů, aby každý host viděl své místo.</p>
+    </section>
+
+    <section class="contact section" id="contact">
+      <div class="section-heading">
+        <p class="kicker" data-i18n="contactKicker">Důležité informace</p>
+        <h2 data-i18n="contactTitle">Kontakty</h2>
+      </div>
+      <div class="contact-grid">
+        <article>
+          <h3 data-i18n="contactVenueTitle">Místo konání</h3>
+          <p>Resort Rybníček</p>
+          <p>Na Rybníčku 856</p>
+          <p>696 71 Blatnice pod Sv. Antonínkem</p>
+        </article>
+        <article>
+          <h3 data-i18n="contactCoordinatorTitle">Koordinace dne</h3>
+          <p data-i18n="contactCoordinatorName">Svědkyně Klára</p>
+          <p><a href="tel:+420777123456">+420 777 123 456</a></p>
+          <p><a href="mailto:svatba.alina.michal@email.cz">svatba.alina.michal@email.cz</a></p>
+        </article>
+        <article>
+          <h3 data-i18n="contactTransportTitle">Doprava a ubytování</h3>
+          <p data-i18n="contactTransportText">Doporučujeme dorazit nejpozději v 11:30. Parkování je dostupné v areálu resortu, ubytování dle předchozí domluvy.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p data-i18n="footerText">S láskou Alina & Michal | 30. 5. 2026</p>
+    <p><a class="admin-link" href="admin.html" data-i18n="adminLink">Správa RSVP (admin)</a></p>
+  </footer>
+
+  <dialog id="lightbox" class="lightbox">
+    <button class="close-lightbox" type="button" aria-label="Close">×</button>
+    <img id="lightboxImage" src="" alt="Expanded gallery image" />
+  </dialog>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RSVP Admin | Alina & Michal</title>
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="motif-layer" aria-hidden="true"></div>
+  <div class="ornament-band ornament-band-vnorovsky" aria-hidden="true"></div>
+
+  <main class="admin-main">
+    <section class="section">
+      <div class="section-heading">
+        <p class="kicker">RSVP Dashboard</p>
+        <h1 class="admin-title">Správa hostů</h1>
+      </div>
+      <p class="admin-note">Přihlášení funguje přes Supabase magic link. Tento panel je připraven pro GitHub Pages.</p>
+
+      <form id="adminLoginForm" class="admin-login-form">
+        <label>
+          <span>Admin e-mail</span>
+          <input type="email" id="adminEmail" required />
+        </label>
+        <button type="submit" class="cta">Poslat přihlašovací odkaz</button>
+      </form>
+      <p id="adminFeedback" class="form-feedback" role="status" aria-live="polite"></p>
+
+      <div id="adminStats" class="admin-stats" hidden>
+        <article>
+          <h3>Celkem RSVP</h3>
+          <p id="statTotal">0</p>
+        </article>
+        <article>
+          <h3>Potvrzená účast</h3>
+          <p id="statComing">0</p>
+        </article>
+        <article>
+          <h3>Potřeba ubytování</h3>
+          <p id="statAccommodation">0</p>
+        </article>
+      </div>
+
+      <div class="table-wrap" id="tableWrap" hidden>
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Jméno</th>
+              <th>E-mail</th>
+              <th>Účast</th>
+              <th>Hostů</th>
+              <th>Ubytování</th>
+              <th>Nocí</th>
+              <th>Sezení</th>
+            </tr>
+          </thead>
+          <tbody id="rsvpRows"></tbody>
+        </table>
+      </div>
+
+      <p><a href="index.html" class="admin-link">Zpět na web</a></p>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>
