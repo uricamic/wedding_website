@@ -6,6 +6,10 @@
   --rose-500: #d66aa2;
   --lila-300: #d9c7f5;
   --lila-500: #9d80cb;
+  --folk-red: #c95b6c;
+  --folk-blue: #4f71b8;
+  --folk-green: #6f8f5c;
+  --paper: #fffaf0;
   --ink: #31263f;
   --muted: #6f637c;
   --white: #ffffff;
@@ -25,9 +29,11 @@ body {
   margin: 0;
   color: var(--ink);
   background:
+    radial-gradient(circle at 25% 14%, rgba(255, 255, 255, 0.45), transparent 28%),
+    repeating-linear-gradient(0deg, rgba(211, 168, 77, 0.04) 0 1px, transparent 1px 4px),
     radial-gradient(circle at 10% 0%, rgba(255, 224, 242, 0.8), transparent 55%),
     radial-gradient(circle at 90% 20%, rgba(216, 198, 244, 0.6), transparent 45%),
-    linear-gradient(160deg, #fffafc 0%, #fef6ff 50%, #fef2f8 100%);
+    linear-gradient(160deg, var(--paper) 0%, #fef6ff 50%, #fdf1f7 100%);
   font-family: "Manrope", "Segoe UI", sans-serif;
   min-height: 100vh;
   line-height: 1.6;
@@ -47,19 +53,40 @@ blockquote {
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  opacity: 0.25;
+  opacity: 0.12;
   background-image:
-    linear-gradient(45deg, transparent 45%, rgba(177, 84, 145, 0.14) 45%, rgba(177, 84, 145, 0.14) 55%, transparent 55%),
-    linear-gradient(-45deg, transparent 45%, rgba(88, 117, 182, 0.12) 45%, rgba(88, 117, 182, 0.12) 55%, transparent 55%);
-  background-size: 28px 28px;
+    linear-gradient(45deg, transparent 45%, rgba(177, 84, 145, 0.12) 45%, rgba(177, 84, 145, 0.12) 55%, transparent 55%),
+    linear-gradient(-45deg, transparent 45%, rgba(130, 101, 180, 0.1) 45%, rgba(130, 101, 180, 0.1) 55%, transparent 55%);
+  background-size: 36px 36px;
+}
+
+.ornament-image {
+  display: block;
+  width: min(1280px, 96vw);
+  margin: 0 auto;
+  filter:
+    saturate(1.08)
+    brightness(1.02)
+    contrast(0.94)
+    drop-shadow(0 2px 8px rgba(158, 112, 186, 0.12));
+}
+
+.ornament-image-top {
+  margin-top: 0.35rem;
+}
+
+.ornament-image-bottom {
+  margin-top: 2rem;
+  transform: scaleY(-1);
+  opacity: 0.84;
 }
 
 .ornament-band {
   width: min(1200px, 92vw);
-  height: 20px;
-  margin: 0.55rem auto;
+  height: 10px;
+  margin: 0.2rem auto 0.8rem;
   border-radius: 999px;
-  box-shadow: inset 0 0 0 1px rgba(130, 88, 160, 0.25);
+  box-shadow: inset 0 0 0 1px rgba(130, 88, 160, 0.18);
 }
 
 .ornament-band-vnorovsky {
@@ -79,7 +106,7 @@ blockquote {
 
 .site-header {
   width: min(1200px, 92vw);
-  margin: 1.5rem auto;
+  margin: 1rem auto 1.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -97,13 +124,31 @@ blockquote {
 }
 
 .lang-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
   border: 0;
   background: transparent;
   border-radius: 999px;
   padding: 0.35rem 0.75rem;
   font-weight: 600;
   color: var(--muted);
+  line-height: 1;
   cursor: pointer;
+}
+
+.lang-flag {
+  width: 1.05rem;
+  height: 0.72rem;
+  object-fit: cover;
+  border-radius: 2px;
+  border: 1px solid rgba(130, 97, 164, 0.24);
+  display: block;
+}
+
+.lang-btn.active .lang-flag {
+  opacity: 1;
+  border-color: rgba(255, 255, 255, 0.42);
 }
 
 .lang-btn.active {
@@ -149,9 +194,11 @@ main {
 
 .hero {
   text-align: center;
-  padding: 4rem 1.2rem 3rem;
+  padding: 4rem 1.3rem 3rem;
   border-radius: 32px;
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.92), rgba(255, 236, 247, 0.84));
+  background:
+    radial-gradient(circle at 50% 24%, rgba(255, 255, 255, 0.66), transparent 44%),
+    linear-gradient(150deg, rgba(255, 252, 246, 0.95), rgba(255, 239, 249, 0.88));
   box-shadow: var(--shadow);
   animation: rise 900ms ease;
   position: relative;
@@ -164,23 +211,48 @@ main {
   position: absolute;
   left: 0.8rem;
   right: 0.8rem;
-  height: 11px;
+  height: 2px;
   border-radius: 999px;
+  opacity: 0.85;
 }
 
 .hero::before {
   top: 0.8rem;
-  background:
-    linear-gradient(45deg, transparent 44%, rgba(177, 84, 145, 0.28) 44%, rgba(177, 84, 145, 0.28) 56%, transparent 56%) 0 0 / 24px 11px,
-    linear-gradient(-45deg, transparent 44%, rgba(157, 128, 203, 0.22) 44%, rgba(157, 128, 203, 0.22) 56%, transparent 56%) 0 0 / 24px 11px;
+  background: linear-gradient(90deg, transparent, rgba(201, 134, 185, 0.7), rgba(161, 132, 204, 0.7), transparent);
 }
 
 .hero::after {
   bottom: 0.8rem;
-  background:
-    radial-gradient(circle at 10px 6px, rgba(197, 93, 152, 0.28) 0 2px, transparent 2px),
-    radial-gradient(circle at 18px 6px, rgba(125, 98, 180, 0.23) 0 2px, transparent 2px);
-  background-size: 28px 11px;
+  background: linear-gradient(90deg, transparent, rgba(161, 132, 204, 0.62), rgba(201, 134, 185, 0.62), transparent);
+}
+
+.hero-illustration {
+  display: block;
+  width: min(420px, 78vw);
+  margin: 0.65rem auto 1rem;
+  opacity: 0.72;
+  filter: drop-shadow(0 2px 8px rgba(163, 128, 190, 0.1));
+}
+
+.hero .quote-wrap::before,
+.hero .quote-wrap::after {
+  content: "";
+  position: absolute;
+  width: 56px;
+  height: 56px;
+  background: url("assets/ornament-corner.svg") center/contain no-repeat;
+  opacity: 0.56;
+}
+
+.hero .quote-wrap::before {
+  top: -0.25rem;
+  left: -0.15rem;
+}
+
+.hero .quote-wrap::after {
+  right: -0.15rem;
+  bottom: -0.25rem;
+  transform: scaleX(-1) scaleY(-1);
 }
 
 .eyebrow {
@@ -232,9 +304,11 @@ main {
 }
 
 .quote-wrap {
-  margin-top: 1.8rem;
-  max-width: 840px;
+  margin-top: 1.55rem;
+  max-width: 760px;
   margin-inline: auto;
+  position: relative;
+  padding: 0.8rem 1.2rem;
 }
 
 blockquote {
@@ -250,12 +324,36 @@ blockquote {
 }
 
 .section {
-  margin-top: 2.2rem;
-  border-radius: 28px;
+  margin-top: 2.35rem;
+  border-radius: 24px;
   padding: 2rem;
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(4px);
-  box-shadow: var(--shadow);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(255, 247, 252, 0.84));
+  backdrop-filter: blur(2px);
+  box-shadow: 0 12px 28px rgba(110, 77, 128, 0.13);
+  position: relative;
+  overflow: hidden;
+}
+
+.section::before,
+.section::after {
+  content: "";
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  background: url("assets/ornament-corner.svg") center/contain no-repeat;
+  opacity: 0.34;
+}
+
+.section::before {
+  top: 0.45rem;
+  left: 0.55rem;
+}
+
+.section::after {
+  right: 0.55rem;
+  bottom: 0.45rem;
+  transform: scaleX(-1) scaleY(-1);
 }
 
 .section-heading {
@@ -270,12 +368,13 @@ blockquote {
 .kicker {
   margin: 0;
   font-size: 1.15rem;
-  color: var(--lila-500);
+  color: #a85a77;
 }
 
 .section h2 {
   margin: 0;
   font-size: clamp(2rem, 4vw, 2.8rem);
+  color: #572449;
 }
 
 .story-grid,
@@ -290,7 +389,7 @@ blockquote {
   border: 1px solid rgba(157, 128, 203, 0.22);
   border-radius: 18px;
   padding: 1rem;
-  background: linear-gradient(180deg, rgba(255, 250, 254, 0.9), rgba(255, 241, 249, 0.75));
+  background: linear-gradient(180deg, rgba(255, 251, 255, 0.92), rgba(255, 245, 252, 0.82));
 }
 
 .story-grid h3,
@@ -319,7 +418,7 @@ blockquote {
 
 .timeline-list span {
   font-weight: 700;
-  color: #57296a;
+  color: #6c2543;
 }
 
 .timeline-list p {
@@ -429,9 +528,9 @@ textarea:focus {
 
 footer {
   width: min(1200px, 92vw);
-  margin: 0 auto 2.2rem;
+  margin: 0 auto 2.1rem;
   text-align: center;
-  color: var(--muted);
+  color: #7d6077;
 }
 
 .admin-main {
@@ -648,8 +747,25 @@ footer {
 }
 
 @media (max-width: 650px) {
+  .ornament-image {
+    width: min(1000px, 95vw);
+  }
+
   .hero {
-    padding: 3rem 0.95rem 2.2rem;
+    padding: 3rem 0.95rem 2.35rem;
+  }
+
+  .hero-illustration {
+    width: min(340px, 90vw);
+    margin: 0.85rem auto 1rem;
+    opacity: 0.76;
+  }
+
+  .hero .quote-wrap::before,
+  .hero .quote-wrap::after {
+    width: 52px;
+    height: 52px;
+    opacity: 0.65;
   }
 
   .section {
