@@ -3,22 +3,32 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Alina & Michal | 30.5.2026</title>
-  <meta name="description" content="Svatebni web Aliny a Michala: harmonogram, galerie, RSVP, pribeh a kontakty." />
+  <title>Alina Ovcharenko & Michal Uřičář | 30.5.2026</title>
+  <meta name="description" content="Svatebni web Aliny Ovcharenko a Michala Uřičáře: harmonogram, galerie, RSVP, pribeh a kontakty." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <div class="motif-layer" aria-hidden="true"></div>
-  <div class="ornament-band ornament-band-vnorovsky" aria-hidden="true"></div>
+  <img class="ornament-image ornament-image-top" src="assets/ornament-garland.svg" alt="" aria-hidden="true" />
 
   <header class="site-header" id="top">
     <div class="language-switch" aria-label="Language switcher">
-      <button class="lang-btn active" data-lang-switch="cs">CZ</button>
-      <button class="lang-btn" data-lang-switch="en">EN</button>
-      <button class="lang-btn" data-lang-switch="uk">UA</button>
+      <button class="lang-btn active" data-lang-switch="cs" aria-label="Cestina">
+        <img class="lang-flag" src="assets/flags/cz.svg" alt="" aria-hidden="true" />
+        <span>CZ</span>
+      </button>
+      <button class="lang-btn" data-lang-switch="en" aria-label="English">
+        <img class="lang-flag" src="assets/flags/gb.svg" alt="" aria-hidden="true" />
+        <span>EN</span>
+      </button>
+      <button class="lang-btn" data-lang-switch="uk" aria-label="Ukrainska">
+        <img class="lang-flag" src="assets/flags/ua.svg" alt="" aria-hidden="true" />
+        <span>UA</span>
+      </button>
     </div>
 
     <nav class="nav">
@@ -26,17 +36,18 @@
       <a href="#timeline" data-i18n="navTimeline">Harmonogram</a>
       <a href="#gallery" data-i18n="navGallery">Galerie</a>
       <a href="#rsvp" data-i18n="navRsvp">RSVP</a>
-      <a href="#seating" data-i18n="navSeating">Zasedací plán</a>
+      <!-- <a href="#seating" data-i18n="navSeating">Zasedací plán</a> -->
       <a href="#contact" data-i18n="navContact">Kontakty</a>
     </nav>
   </header>
 
   <main>
     <section class="hero">
-      <p class="eyebrow" data-i18n="heroEyebrow">Svatba roku 2026</p>
+      <!-- <p class="eyebrow" data-i18n="heroEyebrow">Svatba roku 2026</p> -->
       <h1>Alina <span>&</span> Michal</h1>
       <p class="hero-date" data-i18n="heroDate">30. 5. 2026 | Resort Rybníček</p>
       <p class="hero-location" data-i18n="heroLocation">Na Rybníčku 856, 696 71 Blatnice pod Sv. Antonínkem</p>
+      <img class="hero-illustration" src="assets/hero-doves.svg" alt="Two doves" loading="lazy" />
       <a href="#rsvp" class="cta" data-i18n="heroCta">Potvrdit účast</a>
       <div class="quote-wrap">
         <blockquote data-i18n="quoteOne">"Láska je jako dobré víno..."</blockquote>
@@ -45,7 +56,7 @@
       </div>
     </section>
 
-    <div class="ornament-band ornament-band-vyshyvanka" aria-hidden="true"></div>
+    <!-- <div class="ornament-band ornament-band-vyshyvanka" aria-hidden="true"></div> -->
 
     <section class="story section" id="story">
       <div class="section-heading">
@@ -55,7 +66,7 @@
       <div class="story-grid">
         <article>
           <h3 data-i18n="storyCardOneTitle">První setkání</h3>
-          <p data-i18n="storyCardOneText">Byl pozdní letní večer, kdy se naše cesty nečekaně protnuly. Z původně krátkého rozhovoru vznikl příběh, který nás dovedl až sem.</p>
+          <p data-i18n="storyCardOneText">Bylo zimní poledne, kdy se naše cesty nečekaně protnuly. První randevaux se protáhlo až do pozdního večera a vznikl příběh, který nás dovedl až sem.</p>
         </article>
         <article>
           <h3 data-i18n="storyCardTwoTitle">Morava × Ukrajina</h3>
@@ -75,6 +86,10 @@
       </div>
       <ol class="timeline-list">
         <li>
+          <span>11:30</span>
+          <p data-i18n="eventArrival">Příjezd svatebčanů</p>
+        </li>
+        <li>
           <span>12:00</span>
           <p data-i18n="eventCeremony">Svatební obřad</p>
         </li>
@@ -92,11 +107,7 @@
         </li>
         <li>
           <span>18:00</span>
-          <p data-i18n="eventFirstDance">První tanec a zahájení oslavy</p>
-        </li>
-        <li>
-          <span>18:30 - 24:00</span>
-          <p data-i18n="eventBand">Živá hudba: kapela Georgo</p>
+          <p data-i18n="eventFirstDance">První tanec a zahájení oslavy s hudebním doprovodem kapely Georgo</p>
         </li>
       </ol>
     </section>
@@ -108,12 +119,17 @@
       </div>
       <p class="gallery-note" data-i18n="galleryNote">Kliknutím na fotografii ji otevřete ve větším formátu.</p>
       <div class="gallery-grid" id="galleryGrid">
-        <button class="gallery-item" type="button"><img src="https://picsum.photos/id/1035/1000/1300" alt="Romantic photo 1" loading="lazy" /></button>
-        <button class="gallery-item" type="button"><img src="https://picsum.photos/id/1027/1000/1300" alt="Romantic photo 2" loading="lazy" /></button>
-        <button class="gallery-item" type="button"><img src="https://picsum.photos/id/1062/1000/1300" alt="Romantic photo 3" loading="lazy" /></button>
-        <button class="gallery-item" type="button"><img src="https://picsum.photos/id/1069/1000/1300" alt="Romantic photo 4" loading="lazy" /></button>
-        <button class="gallery-item" type="button"><img src="https://picsum.photos/id/1074/1000/1300" alt="Romantic photo 5" loading="lazy" /></button>
-        <button class="gallery-item" type="button"><img src="https://picsum.photos/id/1081/1000/1300" alt="Romantic photo 6" loading="lazy" /></button>
+          <button class="gallery-item" type="button"><img src="photos/_34A1703.JPG" alt="Alina" loading="lazy" /></button>
+          <button class="gallery-item" type="button"><img src="photos/_34A1773.JPG" alt="Michal" loading="lazy" /></button>
+          <button class="gallery-item" type="button"><img src="photos/_34A4240.JPG" alt="Romantic photo 1" loading="lazy" /></button>
+        <button class="gallery-item" type="button"><img src="photos/93dfd1e0-5041-4608-9ce8-64b3c3f94633.jpg" alt="Romantic photo 2" loading="lazy" /></button>
+        <button class="gallery-item" type="button"><img src="photos/cacbf807-6274-4613-a5a3-0e9ee6b4a991.jpg" alt="Romantic photo 3" loading="lazy" /></button>
+        <button class="gallery-item" type="button"><img src="photos/_34A4244.JPG" alt="Romantic photo 4" loading="lazy" /></button>
+        <button class="gallery-item" type="button"><img src="photos/20250508_184934.jpg" alt="Romantic photo 5" loading="lazy" /></button>
+        <button class="gallery-item" type="button"><img src="photos/4d58cf01-ce47-48ba-b08e-d2fc04d79d51.jpg" alt="Romantic photo 6" loading="lazy" /></button>
+        <button class="gallery-item" type="button"><img src="photos/d70c303c-39b6-45b1-8a84-69819246709a.jpg" alt="Romantic photo 7" loading="lazy" /></button>
+        <button class="gallery-item" type="button"><img src="photos/20250903_125009.jpg" alt="Romantic photo 8" loading="lazy" /></button>
+        <button class="gallery-item" type="button"><img src="photos/20250903_123614.jpg" alt="Romantic photo 9" loading="lazy" /></button>
       </div>
     </section>
 
@@ -159,8 +175,8 @@
           <span data-i18n="fieldAccommodation">Potřebujete ubytování?</span>
           <select name="accommodation" required>
             <option value="" data-i18n="accommodationPlaceholder">Vyberte možnost</option>
-            <option value="no" data-i18n="accommodationNo">Ne, zařídíme si sami</option>
-            <option value="yes" data-i18n="accommodationYes">Ano, prosíme o pomoc s ubytováním</option>
+            <option value="no" data-i18n="accommodationNo">Ne</option>
+            <option value="yes" data-i18n="accommodationYes">Ano</option>
           </select>
         </label>
 
@@ -179,13 +195,13 @@
       </form>
     </section>
 
-    <section class="seating section" id="seating">
+    <!-- <section class="seating section" id="seating">
       <div class="section-heading">
         <p class="kicker" data-i18n="seatingKicker">Připravujeme</p>
         <h2 data-i18n="seatingTitle">Budoucí zasedací plán</h2>
       </div>
       <p data-i18n="seatingText">Po uzávěrce RSVP sem přidáme interaktivní zasedací plán stolů, aby každý host viděl své místo.</p>
-    </section>
+    </section> -->
 
     <section class="contact section" id="contact">
       <div class="section-heading">
@@ -201,9 +217,9 @@
         </article>
         <article>
           <h3 data-i18n="contactCoordinatorTitle">Koordinace dne</h3>
-          <p data-i18n="contactCoordinatorName">Svědkyně Klára</p>
-          <p><a href="tel:+420777123456">+420 777 123 456</a></p>
-          <p><a href="mailto:svatba.alina.michal@email.cz">svatba.alina.michal@email.cz</a></p>
+          <p data-i18n="contactCoordinatorName">Svědek Tomáš</p>
+          <p><a href="tel:+420776795755">+420 776 795 755</a></p>
+          <p><a href="mailto:TUricar@seznam.cz">TUricar@seznam.cz</a></p>
         </article>
         <article>
           <h3 data-i18n="contactTransportTitle">Doprava a ubytování</h3>
@@ -212,6 +228,8 @@
       </div>
     </section>
   </main>
+
+  <img class="ornament-image ornament-image-bottom" src="assets/ornament-garland.svg" alt="" aria-hidden="true" />
 
   <footer>
     <p data-i18n="footerText">S láskou Alina & Michal | 30. 5. 2026</p>

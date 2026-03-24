@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 280" role="img" aria-labelledby="title desc">
+  <title id="title">Kissing doves with raised wings</title>
+  <desc id="desc">Traditional mirrored doves with raised wings, touching beaks and a small heart.</desc>
+
+  <defs>
+    <linearGradient id="outline" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#8f789f"/>
+      <stop offset="100%" stop-color="#9a86b5"/>
+    </linearGradient>
+    <linearGradient id="heart" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#e089b0"/>
+      <stop offset="100%" stop-color="#c86ba3"/>
+    </linearGradient>
+  </defs>
+
+  <g fill="#fffdfd" stroke="url(#outline)" stroke-linecap="round" stroke-linejoin="round" opacity="0.96">
+    <g id="dove-left" transform="translate(120 8)">
+      <!-- Main body silhouette -->
+      <path d="M10 220 C35 205,64 174,80 142 C95 112,122 93,156 94 C185 95,207 111,215 136 C219 149,217 163,210 176 C198 195,173 214,145 224 C116 234,82 236,52 231 C32 227,18 224,10 220 Z" stroke-width="3.8"/>
+
+      <!-- Tail -->
+      <path d="M12 217 C-25 206,-54 192,-82 165 C-55 170,-27 182,4 202" stroke-width="3.4"/>
+
+      <!-- Raised outer wing -->
+      <path d="M96 128 C84 98,86 66,109 40 C130 16,160 9,183 23 C196 31,198 45,192 58 C184 76,167 96,148 113 C132 128,114 139,96 146" stroke-width="3.8"/>
+
+      <!-- Inner wing -->
+      <path d="M100 146 C88 131,82 114,83 95 C92 77,109 67,129 73 C150 80,165 97,170 118 C171 132,163 144,149 151 C135 158,118 158,100 146 Z" stroke-width="3.2"/>
+
+      <!-- Feather lines -->
+      <path d="M96 127 C123 120,145 101,161 74" fill="none" stroke-width="2.3"/>
+      <path d="M92 112 C115 106,136 90,151 69" fill="none" stroke-width="2.2"/>
+      <path d="M90 99 C111 95,129 81,143 63" fill="none" stroke-width="2.1"/>
+      <path d="M111 146 C129 146,145 138,154 125" fill="none" stroke-width="2.1"/>
+
+      <!-- Beak and eye -->
+      <path d="M214 136 L232 140" fill="none" stroke-width="2.5"/>
+      <path d="M202 130 Q196 136,188 130" fill="none" stroke-width="2.2"/>
+    </g>
+
+    <g transform="translate(760 0) scale(-1 1)">
+      <use href="#dove-left"/>
+    </g>
+  </g>
+
+  <!-- tiny kissing heart -->
+  <path d="M380 134 C373 125,360 126,355 136 C350 146,355 157,380 172 C405 157,410 146,405 136 C400 126,387 125,380 134 Z" fill="url(#heart)" opacity="0.95"/>
+
+  <!-- gentle perch line -->
+  <path d="M118 248 C216 262,544 262,642 248" fill="none" stroke="#d9c6e6" stroke-width="3.2" stroke-linecap="round" opacity="0.6"/>
+</svg>
