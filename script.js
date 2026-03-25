@@ -31,6 +31,9 @@ const translations = {
     galleryKicker: "Vzpomínky",
     galleryTitle: "Fotogalerie",
     galleryNote: "Kliknutím na fotografii ji otevřete ve větším formátu.",
+    galleryPrev: "Předchozí",
+    galleryNext: "Další",
+    galleryPage: "Strana",
     rsvpKicker: "Budeme rádi, když dorazíte",
     rsvpTitle: "RSVP formulář",
     fieldName: "Jméno a příjmení",
@@ -97,6 +100,9 @@ const translations = {
     galleryKicker: "Memories",
     galleryTitle: "Photo Gallery",
     galleryNote: "Click a photo to open a larger view.",
+    galleryPrev: "Previous",
+    galleryNext: "Next",
+    galleryPage: "Page",
     rsvpKicker: "We would love to see you there",
     rsvpTitle: "RSVP Form",
     fieldName: "Full name",
@@ -163,6 +169,9 @@ const translations = {
     galleryKicker: "Спогади",
     galleryTitle: "Фотогалерея",
     galleryNote: "Натисніть на фото, щоб відкрити великий формат.",
+    galleryPrev: "Назад",
+    galleryNext: "Далі",
+    galleryPage: "Сторінка",
     rsvpKicker: "Ми будемо раді бачити вас",
     rsvpTitle: "Форма RSVP",
     fieldName: "Ім'я та прізвище",
@@ -205,7 +214,17 @@ const rsvpForm = document.getElementById("rsvpForm");
 const formFeedback = document.getElementById("formFeedback");
 const lightbox = document.getElementById("lightbox");
 const lightboxImage = document.getElementById("lightboxImage");
+const galleryGrid = document.getElementById("galleryGrid");
+const galleryItems = [...document.querySelectorAll("#galleryGrid .gallery-item")];
+const galleryPrev = document.getElementById("galleryPrev");
+const galleryNext = document.getElementById("galleryNext");
+const galleryPageInfo = document.getElementById("galleryPageInfo");
+const galleryPageNumbers = document.getElementById("galleryPageNumbers");
 const hasSupabaseSdk = typeof window.supabase !== "undefined";
+
+const photosPerPage = 6;
+let currentGalleryPage = 1;
+const totalGalleryPages = Math.max(1, Math.ceil(galleryItems.length / photosPerPage));
 
 const config = window.WEDDING_CONFIG || {};
 const isSupabaseReady =
@@ -249,6 +268,8 @@ function applyTranslations(lang) {
     button.classList.toggle("active", button.dataset.langSwitch === lang);
   });
 
+  updateGalleryPaginationInfo();
+
   localStorage.setItem("wedding-lang", lang);
 }
 
@@ -260,6 +281,96 @@ langButtons.forEach((button) => {
 
 const initialLang = localStorage.getItem("wedding-lang") || "cs";
 applyTranslations(initialLang);
+
+function updateGalleryPaginationInfo() {
+  if (!galleryPageInfo) {
+    return;
+  }
+  const lang = localStorage.getItem("wedding-lang") || "cs";
+  const pageLabel = translations[lang]?.galleryPage || translations.cs.galleryPage;
+  galleryPageInfo.textContent = `${pageLabel} ${currentGalleryPage}/${totalGalleryPages}`;
+
+  if (galleryPrev) {
+    galleryPrev.disabled = currentGalleryPage === 1;
+  }
+  if (galleryNext) {
+    galleryNext.disabled = currentGalleryPage === totalGalleryPages;
+  }
+
+  renderGalleryPageButtons();
+}
+
+function renderGalleryPageButtons() {
+  if (!galleryPageNumbers) {
+    return;
+  }
+
+  const lang = localStorage.getItem("wedding-lang") || "cs";
+  const pageLabel = translations[lang]?.galleryPage || translations.cs.galleryPage;
+  galleryPageNumbers.innerHTML = "";
+
+  for (let page = 1; page <= totalGalleryPages; page += 1) {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "gallery-page-number";
+    button.textContent = String(page);
+    button.setAttribute("aria-label", `${pageLabel} ${page}`);
+
+    if (page === currentGalleryPage) {
+      button.classList.add("active");
+      button.setAttribute("aria-current", "page");
+    }
+
+    button.addEventListener("click", () => {
+      if (currentGalleryPage === page) {
+        return;
+      }
+      currentGalleryPage = page;
+      renderGalleryPage();
+    });
+
+    galleryPageNumbers.appendChild(button);
+  }
+}
+
+function renderGalleryPage() {
+  if (!galleryItems.length) {
+    return;
+  }
+
+  const start = (currentGalleryPage - 1) * photosPerPage;
+  const end = start + photosPerPage;
+
+  galleryItems.forEach((item, index) => {
+    const isVisible = index >= start && index < end;
+    item.hidden = !isVisible;
+
+    if (isVisible) {
+      item.style.animation = "none";
+      requestAnimationFrame(() => {
+        item.style.animation = "reveal 420ms ease forwards";
+      });
+    }
+  });
+
+  updateGalleryPaginationInfo();
+}
+
+galleryPrev?.addEventListener("click", () => {
+  if (currentGalleryPage > 1) {
+    currentGalleryPage -= 1;
+    renderGalleryPage();
+  }
+});
+
+galleryNext?.addEventListener("click", () => {
+  if (currentGalleryPage < totalGalleryPages) {
+    currentGalleryPage += 1;
+    renderGalleryPage();
+  }
+});
+
+renderGalleryPage();
 
 rsvpForm.addEventListener("submit", async (event) => {
   event.preventDefault();
@@ -323,7 +434,7 @@ rsvpForm.addEventListener("submit", async (event) => {
 });
 
 // Simple lightbox without external dependencies.
-document.getElementById("galleryGrid").addEventListener("click", (event) => {
+galleryGrid.addEventListener("click", (event) => {
   const image = event.target.closest("img");
   if (!image) {
     return;

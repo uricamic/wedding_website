@@ -2,6 +2,9 @@ const adminFeedback = document.getElementById("adminFeedback");
 const adminLoginForm = document.getElementById("adminLoginForm");
 const adminEmail = document.getElementById("adminEmail");
 const adminPassword = document.getElementById("adminPassword");
+const adminAuthCard = document.getElementById("adminAuthCard");
+const adminContent = document.getElementById("adminContent");
+const adminLogoutBtn = document.getElementById("adminLogoutBtn");
 const statTotal = document.getElementById("statTotal");
 const statComing = document.getElementById("statComing");
 const statAccommodation = document.getElementById("statAccommodation");
@@ -31,6 +34,45 @@ const canUseSupabase =
 let allRows = [];
 let visibleRows = [];
 let seatingRows = [];
+
+function resetDashboardState() {
+  allRows = [];
+  visibleRows = [];
+  seatingRows = [];
+
+  adminStats.hidden = true;
+  adminFilters.hidden = true;
+  tableWrap.hidden = true;
+  seatingEditor.hidden = true;
+
+  rsvpRows.innerHTML = "";
+  seatingBoard.innerHTML = "";
+  seatGuest.innerHTML = '<option value="">Vyberte hosta</option>';
+
+  filterSearch.value = "";
+  filterAttendance.value = "all";
+  filterAccommodation.value = "all";
+}
+
+function showAuthGate() {
+  if (adminAuthCard) {
+    adminAuthCard.hidden = false;
+  }
+  if (adminContent) {
+    adminContent.hidden = true;
+  }
+}
+
+function showDashboard() {
+  if (adminAuthCard) {
+    adminAuthCard.hidden = true;
+  }
+  if (adminContent) {
+    adminContent.hidden = false;
+  }
+}
+
+showAuthGate();
 
 if (!canUseSupabase) {
   adminFeedback.textContent =
@@ -71,6 +113,21 @@ if (!canUseSupabase) {
     }
     exportCsv(visibleRows);
     adminFeedback.textContent = `Export hotov: ${visibleRows.length} řádků.`;
+  });
+
+  adminLogoutBtn?.addEventListener("click", async () => {
+    const { error } = await supabase.auth.signOut();
+
+    resetDashboardState();
+    showAuthGate();
+    adminLoginForm.reset();
+
+    if (error) {
+      adminFeedback.textContent = "Odhlášení se nepodařilo. Zkuste to znovu.";
+      return;
+    }
+
+    adminFeedback.textContent = "Byli jste odhlášeni.";
   });
 
   seatingForm.addEventListener("submit", async (event) => {
@@ -328,16 +385,21 @@ if (!canUseSupabase) {
   async function initAdmin() {
     const { data } = await supabase.auth.getSession();
     if (!data.session) {
+      resetDashboardState();
+      showAuthGate();
       adminFeedback.textContent = "Přihlaste se e-mailem a heslem, poté se data načtou.";
       return;
     }
 
     const allowed = await verifyAllowlist(data.session);
     if (!allowed) {
+      resetDashboardState();
+      showAuthGate();
       adminFeedback.textContent = "Tento účet není v admin allowlistu. Požádejte o přidání e-mailu.";
       return;
     }
 
+    showDashboard();
     adminFeedback.textContent = "Načítám RSVP data...";
     await loadRows();
     await loadSeatingAssignments();
