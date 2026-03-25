@@ -149,7 +149,7 @@ const translations = {
     heroLocation: "Na Rybníčku 856, 696 71 Blatnice pod Sv. Antonínkem",
     heroCta: "Підтвердити участь",
     quoteOne: "\"Любов як добре вино...\"",
-    quoteTwo: "\"І це просто: рука в руці йти і нічого більше не мати, і нічого більше не хотіти\"",
+    quoteTwo: "\"І як це просто —йти рука в руці, іти — та нічого вже не жадати, і більш нічого у світі не потребувати.\"",
     storyKicker: "Як усе почалося",
     storyTitle: "Наша історія",
     storyCardOneTitle: "Перша зустріч",
