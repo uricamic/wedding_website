@@ -12,15 +12,16 @@
 </head>
 <body>
   <div class="motif-layer" aria-hidden="true"></div>
-  <div class="ornament-band ornament-band-vnorovsky" aria-hidden="true"></div>
+  <img class="ornament-image ornament-image-top" src="assets/ornament-garland.svg" alt="" aria-hidden="true" />
+  <!-- <div class="ornament-band ornament-band-vnorovsky" aria-hidden="true"></div> -->
 
   <main class="admin-main">
-    <section class="section">
+    <section class="section admin-auth-card" id="adminAuthCard">
       <div class="section-heading">
         <p class="kicker">RSVP Dashboard</p>
-        <h1 class="admin-title">Správa hostů</h1>
+        <h1 class="admin-title">Přihlášení správce</h1>
       </div>
-      <p class="admin-note">Přihlášení funguje přes Supabase Auth (e-mail + heslo). Tento panel je připraven pro GitHub Pages.</p>
+      <p class="admin-note">Přihlášení funguje přes Supabase Auth (e-mail + heslo). Bez přihlášení se data nezobrazí.</p>
 
       <form id="adminLoginForm" class="admin-login-form">
         <label>
@@ -34,6 +35,17 @@
         <button type="submit" class="cta">Přihlásit</button>
       </form>
       <p id="adminFeedback" class="form-feedback" role="status" aria-live="polite"></p>
+    </section>
+
+    <section class="section" id="adminContent" hidden>
+      <div class="section-heading admin-heading">
+        <p class="kicker">RSVP Dashboard</p>
+        <div class="admin-heading-actions">
+          <h1 class="admin-title">Správa hostů</h1>
+          <button id="adminLogoutBtn" class="admin-logout" type="button">Odhlásit</button>
+        </div>
+      </div>
+      <p class="admin-note">Přehled potvrzených hostů, filtrů a zasedacího plánu.</p>
 
       <div id="adminStats" class="admin-stats" hidden>
         <article>
@@ -127,6 +139,12 @@
       <p><a href="index.html" class="admin-link">Zpět na web</a></p>
     </section>
   </main>
+
+  <img class="ornament-image ornament-image-bottom" src="assets/ornament-garland.svg" alt="" aria-hidden="true" />
+
+  <footer>
+    <p>Svatba Alina & Michal | Admin panel</p>
+  </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="config.js"></script>
