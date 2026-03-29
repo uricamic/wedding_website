@@ -46,8 +46,8 @@ const translations = {
     fieldGuests: "Počet hostů",
     fieldAccommodation: "Potřebujete ubytování?",
     accommodationPlaceholder: "Vyberte možnost",
-    accommodationNo: "Ne, zařídíme si sami",
-    accommodationYes: "Ano, prosíme o pomoc s ubytováním",
+    accommodationNo: "Ne",
+    accommodationYes: "Ano",
     fieldFood: "Alergie nebo stravovací preference",
     fieldMessage: "Vzkaz pro novomanžele",
     rsvpSubmit: "Odeslat RSVP",
@@ -240,6 +240,23 @@ if (isSupabaseReady) {
   );
 }
 
+function linkGeorgoInTimeline() {
+  const eventNode = document.querySelector('[data-i18n="eventFirstDance"]');
+  if (!eventNode) {
+    return;
+  }
+
+  const text = eventNode.textContent || "";
+  if (!text.includes("Georgo")) {
+    return;
+  }
+
+  eventNode.innerHTML = text.replace(
+    "Georgo",
+    '<a href="https://www.georgo.cz/" target="_blank" rel="noopener noreferrer">Georgo</a>'
+  );
+}
+
 function applyTranslations(lang) {
   const dict = translations[lang] || translations.cs;
 
@@ -268,6 +285,7 @@ function applyTranslations(lang) {
     button.classList.toggle("active", button.dataset.langSwitch === lang);
   });
 
+  linkGeorgoInTimeline();
   updateGalleryPaginationInfo();
 
   localStorage.setItem("wedding-lang", lang);
@@ -372,6 +390,23 @@ galleryNext?.addEventListener("click", () => {
 
 renderGalleryPage();
 
+async function submitViaFormEndpoint(formData) {
+  const encodedData = new URLSearchParams();
+  formData.forEach((value, key) => {
+    encodedData.append(key, String(value));
+  });
+
+  const response = await fetch("/", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: encodedData.toString()
+  });
+
+  if (!response.ok) {
+    throw new Error(`Form endpoint returned ${response.status}`);
+  }
+}
+
 rsvpForm.addEventListener("submit", async (event) => {
   event.preventDefault();
 
@@ -403,9 +438,9 @@ rsvpForm.addEventListener("submit", async (event) => {
       formFeedback.textContent = translations[lang].rsvpSuccess;
       rsvpForm.reset();
       return;
-    } catch {
+    } catch (supabaseError) {
+      console.error("Supabase RSVP insert failed", supabaseError);
       formFeedback.textContent = translations[lang].rsvpError;
-      return;
     }
   }
 
@@ -415,20 +450,12 @@ rsvpForm.addEventListener("submit", async (event) => {
     return;
   }
 
-  const encodedData = new URLSearchParams();
-  formData.forEach((value, key) => {
-    encodedData.append(key, String(value));
-  });
-
   try {
-    await fetch("/", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: encodedData.toString()
-    });
+    await submitViaFormEndpoint(formData);
     formFeedback.textContent = translations[lang].rsvpSuccess;
     rsvpForm.reset();
-  } catch {
+  } catch (formError) {
+    console.error("Fallback RSVP form submit failed", formError);
     formFeedback.textContent = translations[lang].rsvpError;
   }
 });
